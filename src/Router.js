@@ -1,4 +1,7 @@
 import React from "react";
+
+// Bu joyda xozir test uchun, Bu joyda router boladi !!!
+
 export function Router() {
   return (
     <div id="router" style={MyStyle.contener}>
@@ -18,7 +21,6 @@ export function Router() {
 }
 
 // bu faqat test uchun
-
 const MyStyle = {
   contener: {
     with: "100%",

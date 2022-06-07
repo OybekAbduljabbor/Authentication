@@ -76,3 +76,28 @@
   cursor: pointer;
   font-weight: 600;
 }
+
+/* ======= loading ========= */
+
+#loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0c1329b5;
+  display: none;
+}
+
+#loading > figure {
+  max-width: 100px;
+  width: 100%;
+  height: auto;
+}
+
+#loading > figure > img {
+  width: 100%;
+}
