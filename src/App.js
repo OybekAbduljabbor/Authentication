@@ -1,11 +1,9 @@
 import React from "react";
 
 import { Login } from "./Pages/Login/Login";
+import { Router } from "./Router";
 
 export function App() {
-  return (
-    <div id="App">
-      <Login />
-    </div>
-  );
+  const [isLogin, setIsLogin] = React.useState(false);
+  return isLogin ? <Router /> : <Login setIsLogin={setIsLogin} />;
 }
