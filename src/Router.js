@@ -16,6 +16,14 @@ export function Router() {
       >
         My Web Site
       </a>
+      <a
+        style={MyStyle.aLinck}
+        href="https://github.com/OybekAbduljabbor/Authentication"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Source Code in GitHub
+      </a>
     </div>
   );
 }
