@@ -58,7 +58,11 @@ export function Product() {
               <input
                 type="text"
                 placeholder="Search product Name or  BarCode"
-                onChange={(e) => setSearch(e.target.value)}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setPage(1);
+                  setShowMore(10);
+                }}
               />
             </td>
           </tr>
@@ -89,7 +93,8 @@ export function Product() {
         <Pagination
           count={Math.floor(result.length / 10) || 1}
           color="primary"
-          defaultPage={+page}
+          page={+page}
+          // defaultPage={}
           onChange={(e, value) => {
             sessionStorage.setItem("page", value);
             setPage(value);
