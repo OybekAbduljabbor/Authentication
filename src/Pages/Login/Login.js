@@ -9,16 +9,23 @@ import axios from "axios";
 import loadingAnimate from "../../Assets/Icons/loading.gif";
 import { useSnackbar } from "notistack";
 import { Button } from "@mui/material";
+import { acToken } from "../../Redux/Auth/reAuth";
+import { useSelector, useDispatch } from "react-redux";
+import { acLoading } from "../../Redux/Loading/reLoading";
 
 export function Login({ setIsLogin }) {
   const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
+  const dispatch = useDispatch();
+
+  const loading = useSelector((state) => state.reLoading);
+
+  console.log(loading);
 
   // login function
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
+    dispatch(acLoading(true));
 
     // get user input
     const _username = e.target.login.value;
@@ -35,19 +42,29 @@ export function Login({ setIsLogin }) {
       data: `_username=${_username}&_password=${_password}&_subdomain=${_subdomain}`,
     })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.token);
+        dispatch(acToken(res.data.token));
         setIsLogin(true);
-        setLoading(false);
         enqueueSnackbar("Login Success", {
           variant: "success",
         });
+        dispatch(acLoading(false));
+
+        sessionStorage.setItem(
+          "auth",
+          JSON.stringify({
+            _username,
+            _password,
+            _subdomain,
+          })
+        );
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false);
         enqueueSnackbar("Login Failed", {
           variant: "error",
         });
+        dispatch(acLoading(false));
       });
 
     clearInput(e);
